@@ -31,9 +31,9 @@ use strict;
 
 # SCRIPT VARIABLES
 my $DEBUG = 0;
-my $JDK_URL = 'http://download.oracle.com/otn-pub/java/jdk/7u11-b21/jdk-7u11-linux-x64.tar.gz';
-my $JDK_TAR = "jdk-7u11-linux-x64.tar.gz";
-my $JDK_DIR = "jdk1.7.0_11";
+my $JDK_URL = 'http://download.oracle.com/otn-pub/java/jdk/7u13-b20/jdk-7u13-linux-x64.tar.gz';
+my $JDK_TAR = "jdk-7u13-linux-x64.tar.gz";
+my $JDK_DIR = "jdk1.7.0_13";
 my $WGET = "wget --no-cookies --header \"Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F\" $JDK_URL";
 
 &main();
@@ -64,8 +64,8 @@ sub installJDK()
   executeCMD("mkdir -p /usr/local/java; cd /usr/local/java; $WGET; chmod a+x $JDK_TAR; tar xvzf $JDK_TAR");
 
   executeCMD("chown -R root:root /usr/local/java/$JDK_DIR");
-  executeCMD("ln -s /usr/local/java/$JDK_DIR /usr/local/java/latest");
-
+  executeCMD("/bin/rm /usr/local/java/latest; ln -s /usr/local/java/$JDK_DIR /usr/local/java/latest");
+  executeCMD("/bin/rm /usr/local/java/$JDK_TAR");
 }
 
 sub checkUser()
@@ -102,8 +102,8 @@ sub gatherArguements()
   if($DEBUG)
   {
     print "\nDEBUG: GatherArguements\n";
-    print "    $DEBUG     = $MODE\n";
-    print "    $JDK_TAR   = $JDK_TAR\n";
+    print "    DEBUG     = $DEBUG\n";
+    print "    JDK_TAR   = $JDK_TAR\n";
   }
 }
 
