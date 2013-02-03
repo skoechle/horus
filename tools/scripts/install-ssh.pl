@@ -141,7 +141,7 @@ sub gatherArguements()
   if($DEBUG)
   {
     print "\nDEBUG: GatherArguements\n";
-    print "    $DEBUG     = $MODE\n";
+    print "    DEBUG     = $DEBUG\n";
   }
 }
 
